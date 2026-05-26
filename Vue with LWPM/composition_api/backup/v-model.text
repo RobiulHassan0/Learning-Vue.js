@@ -1,0 +1,39 @@
+<script setup>
+import { ref, reactive } from 'vue';
+
+let name = ref('RObin klhan');
+
+let email = ref('');
+let password = ref('');
+
+// Reactive
+
+const form = reactive({
+  email: "",
+  password: ""
+});
+
+</script>
+ 
+
+<template>
+  <div>
+    <input type="text" :value="name"> <br> <br>
+    <input type="text" v-model="name"> <br> <br> <br> <br>
+    <p>{{ name }}</p>
+
+
+    <input type="text" name="email" placeholder="enter email" v-model="email"> <br> <br>
+    <input type="text" name="password" placeholder="enter password" v-model="password"> <br> <br>
+    
+    {{ email }} / {{ password }}
+
+
+    <form action="">
+      <input type="text" name="email" placeholder="enter email" v-model="form.email"> <br> <br>
+      <input type="password" name="password" placeholder="enter password" v-model="form.password">
+    </form>
+    {{ form }}
+
+  </div>
+</template>
