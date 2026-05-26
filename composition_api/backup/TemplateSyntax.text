@@ -1,0 +1,43 @@
+<script setup>
+
+  let msg = 'Welcome World';
+  let dynamicId = 2;
+
+let isDisabled = true;
+
+const obejctOfAttrs = {
+  id: 'container',
+  class: 'wrapper'
+}
+
+let seen = true;
+
+let chatgpt = 'https://chatgpt.com/';
+
+const clickMe = () => {
+  console.log('clicked');
+}
+
+</script>
+ 
+
+<template>
+  <div v-html="msg">
+
+  </div>
+
+  <button :disabled="isDisabled">Button</button>
+
+  <div :id="dynamicId" > Dynamic ID</div>
+
+  <div v-bind="obejctOfAttrs">Container</div>
+
+  <p v-if="seen">Now you see me!</p>
+
+  <p v-show="seen">Now you see me!</p>
+
+  <a :href="chatgpt">chatgpt</a>
+
+  <button v-on:click="clickMe">Click Me</button>
+  <button @click="clickMe">Click Me too</button>
+</template>
