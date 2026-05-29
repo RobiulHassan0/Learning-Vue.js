@@ -1,0 +1,47 @@
+<script setup>
+import { ref, onMounted, onUpdated } from 'vue';
+ 
+const users = ref([]);
+
+function getUsers(){
+  // api call
+  users.value = [
+    {
+      id: 1,
+      name: 'Robin',
+    },
+    {
+      id: 2,
+      name: 'Hassan',
+    }
+  ];
+}
+
+onMounted( () => {
+  console.log('on mounted');
+
+  getUsers();
+})
+
+onUpdated( () => {
+  console.log('on update')
+})
+</script>
+
+<template>
+<div class="main">
+
+  <div>
+    <div v-for="user in users" :key="user.id">{{ user.name }}</div>
+  </div>
+
+</div>
+</template>
+
+
+<style scoped>
+  .main{
+    display: flex;
+    justify-content: center;
+  }
+</style>
