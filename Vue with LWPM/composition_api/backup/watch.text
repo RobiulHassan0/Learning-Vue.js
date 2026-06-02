@@ -1,0 +1,39 @@
+<script setup>
+import { reactive, ref, watch } from 'vue';
+
+
+  // const number = ref(0);
+  const form = reactive({
+    number: 0
+  });
+
+  setInterval( () => {
+    form.number++
+  }, 1000)
+
+  watch( () => form, (form) => {
+    console.log('change', form.number)
+  }, {
+    deep: true
+  })
+
+</script>
+
+<template>
+
+<div class="main">
+  {{ form.number }}
+</div>
+
+</template>
+
+
+<style scoped>
+  .main{
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    font-weight: bolder;
+    font-size: 50px;
+  }
+</style>
