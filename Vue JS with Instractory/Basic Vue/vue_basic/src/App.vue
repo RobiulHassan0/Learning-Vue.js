@@ -1,4 +1,4 @@
-<script >
+<!-- <script >
 
 // Options API
     // export default{
@@ -11,6 +11,7 @@
     //   }
     // }
 
+// Compostion API
   export default{
     setup(){
       let count = 0;
@@ -21,7 +22,30 @@
     }
   }
 
+</script> -->
+
+<script>
+  // import { ref } from 'vue';
+
+  // let count = ref(0);
+  // const courseName = ref("Vue JS 3 Masterclass");
+  // const mentor = ref("Mahmud Ibrahim");
+
+  import { ref } from 'vue';
+  
+  export default{
+    setup() {
+      let count = ref(0);
+      const courseName = ref("Vue JS 3 Masterclass");
+      const mentor = ref("Mahmud Ibrahim");
+
+      return {count, courseName, mentor}
+    }
+  }
+
 </script>
+
+
 
 <template>
   <h1>course name:  {{ courseName }}</h1>
