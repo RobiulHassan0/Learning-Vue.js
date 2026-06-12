@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ইনফোগ্রাফি</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">সঠিক উত্তর</a></li>
+            <li><a href="personal_result.html">ব্যক্তিগত ফলাফল</a></li>
+            <li><a href="overall_result.html">সামগ্রিক ফলাফল</a></li>
+            <li><a href="leaderboard.html"  class="active">লিডারবোর্ড</a></li>
+        </ul>
+    </nav>
+
+
+<h1>🏆 কুইজ লিডারবোর্ড</h1>
+
+  <!-- টপ ৩ কার্ড -->
+  <div id="top-3-container" class="top-3-container"></div>
+
+  <!-- পূর্ণ টেবিল -->
+  <div class="quiz-container">
+    <div id="overall-data-container">
+      <p>ফলাফল লোড হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</p>
+    </div>
+
+    <div id="infographics-container"></div>
+
+    <!-- নিচে দুইটা ক্যানভাস যোগ করো -->
+    <div class="infographics-wrapper">
+    <div class="infographics-left">
+        <h3 class="info-right-title">প্রতিযোগীদের শিক্ষা ব্যাকগ্রাউন্ড</h3>
+        <canvas id="chartIndividual"></canvas>
+    </div>
+    <div class="infographics-right">
+        <h3 class="info-right-title">ব্যাকগ্রাউন্ডভিত্তিক শিক্ষাপ্রতিষ্ঠান</h3>
+        <canvas id="chartInstitution"></canvas>
+    </div>
+    </div>
+
+
+
+  </div>
+
+  
+
+    <div id="footer-placeholder"></div>
+
+
+    <script src="config.js"></script>
+    <script src="leaderboard.js"></script>
+    <script src="infographics.js"></script>
+    
+    <!-- আপনার HTML ফাইলে Chart.js লিংক যোগ করুন -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+    <script>
+        fetch("footer.html")
+            .then(res => res.text())
+            .then(data => {
+            document.getElementById("footer-placeholder").innerHTML = data;
+            });
+    </script>
+</body>
+</html>

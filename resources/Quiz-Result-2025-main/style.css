@@ -1,0 +1,992 @@
+
+/* Google Fonts থেকে বাংলা ফন্ট লোড করা হলো */
+@import url('https://fonts.googleapis.com/css2?family=Tiro+Bangla:ital@0;1&display=swap');
+
+body {
+    font-family: 'Tiro Bangla', 'SolaimanLipi', Arial, sans-serif; /* বাংলা ফন্ট ব্যবহার */
+    background: #e9f0f7; /* হালকা নীলচে ব্যাকগ্রাউন্ড */
+    margin: 0; 
+    padding: 0;
+    color: #333;
+}
+
+/* --- নেভিগেশন মেনুর জন্য নতুন CSS --- */
+.main-nav {
+    background-color: #1e293b; /* গাঢ় নীল ব্যাকগ্রাউন্ড */
+    padding: 10px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.main-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 auto;
+    max-width: 900px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.main-nav li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 10px 15px;
+    display: block;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+}
+
+.main-nav li a:hover,
+.main-nav li a.active {
+    background-color: #0ea5e9; 
+}
+
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    color: #0b509d; /* গাঢ় নীল */
+    font-weight: 700;
+    border-bottom: 3px solid #0b509d;
+    padding-bottom: 10px;
+}
+.quiz-container {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+/* ইনপুট বার */
+.search-row { 
+    display:flex; 
+    gap:8px; 
+    margin-bottom:16px; 
+}
+.search-row input[type="text"] {
+    flex:1; 
+    padding: 15px 12px; 
+    border:1px solid #cfd8e3; 
+    border-radius:8px;
+    background:#fff;
+    outline: #c8d3e6;
+}
+.search-row button {
+    padding:10px 14px; 
+    border-radius:8px; 
+    border:0; 
+    background:#1976d2; 
+    color:#fff;
+    cursor:pointer;
+}
+.search-row button:disabled { 
+    background:#9bbce6; 
+    cursor:not-allowed; 
+}
+
+
+.question-card {
+    background: white;
+    border-radius: 12px;
+    margin-bottom: 25px;
+    padding: 25px 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* উন্নত শ্যাডো */
+    border: 1px solid #dcdcdc;
+}
+.question-number {
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    color: #1a73e8; /* নীল */
+    padding-right: 10px;
+}
+.question-text {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+.options-list {
+    list-style: none;
+    padding-left: 0;
+}
+.option-item {
+    padding: 14px 20px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    border: 2px solid #c8d3e6; /* হালকা নীলচে বর্ডার */
+    color: #444;
+    font-size: 1.05rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+.option-item:hover {
+    background-color: #f0f7ff; /* হোভারে হালকা নীল */
+    border-color: #1a73e8;
+}
+
+/* সঠিক উত্তরকে হাইলাইট করবে */
+.option-item.correct {
+    background-color: #e0f2f1; /* হালকা সবুজ */
+    border-color: #00897b; /* টিল রঙের বর্ডার */
+    color: #004d40;
+    font-weight: 600;
+    position: relative;
+}
+.option-item.correct::before {
+    content: "✅"; /* সঠিক চিহ্নের ইমোজি */
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 1.2rem;
+}
+.explanation {
+    background: #f0f7ff; /* হালকা নীল ব্যাকগ্রাউন্ড */
+    border-left: 6px solid #1a73e8; /* গাঢ় নীল বর্ডার */
+    padding: 18px 25px;
+    margin-top: 20px;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333;
+    border-radius: 0 8px 8px 0;
+}
+
+/* রেসপনসিভনেস */
+@media (max-width: 600px) {
+    .main nav {
+        padding: 15px 10px;
+    }
+    .main-nav li a {
+        font-size: 0.7rem;
+    }
+    .quiz-container{
+        padding: 0 15px;
+    }
+    h1 {
+        font-size: 1.5rem;
+        padding: 0 10px;
+    }
+    .question-card {
+        padding: 15px 15px;
+    }
+    .question-number {
+        font-size: 1.2rem;
+    }
+    .question-text {
+        font-size: 1.1rem;
+    }
+    .option-item {
+        font-size: 0.95rem;
+        padding: 12px 15px;
+    }
+    .option-item.correct::before {
+        right: 10px;
+        font-size: 1rem;
+    }
+    .explanation {
+        padding: 15px 18px;
+        font-size: 0.9rem;
+    }
+    
+}
+
+
+
+/* Overall Result Container */
+
+#overall-data-container {
+    background: white;
+    border-radius: 12px;
+    padding: 25px 30px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    border: 1px solid #dcdcdc;
+    margin-bottom: 30px;
+    text-align: center;
+    animation: fadeIn 0.6s ease-in-out;
+    overflow-x: auto; /* Prevent horizontal scroll */
+}
+
+/* Title Highlight */
+h1::after {
+    content: "";
+    display: block;
+    width: 80px;
+    height: 4px;
+    background: #1a73e8;
+    margin: 12px auto 0;
+    border-radius: 2px;
+}
+
+/* Table Wrapper for Responsiveness */
+.table-responsive {
+    width: 100%;
+    overflow-x: auto;
+}
+
+/* Table Design */
+#overall-data-container table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    min-width: 600px; /* Prevent breaking table structure */
+    border-radius: 10px;
+}
+
+#overall-data-container th,
+#overall-data-container td {
+    padding: 14px 16px;
+    text-align: center;
+    border: 1px solid #e5e7eb;
+    font-size: 1rem;
+}
+
+#overall-data-container th {
+    background: linear-gradient(90deg, #0b509d, #1a73e8);
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+#overall-data-container tr:nth-child(even) {
+    background: #f9fbff;
+}
+
+#overall-data-container tr:hover {
+    background: #e3f2fd;
+    transition: background 0.3s ease;
+}
+
+/* Loader / Message */
+#overall-data-container p {
+    font-size: 1.1rem;
+    color: #666;
+    margin: 15px 0;
+}
+
+/* Simple Fade-in Animation */
+@keyframes fadeIn {
+    from {opacity: 0; transform: translateY(10px);}
+    to {opacity: 1; transform: translateY(0);}
+}
+
+/* --- Top 3 Winner Section --- */
+#top-3-container {
+    margin-bottom: 100px;
+    margin-top: 100px;
+}
+
+.top-3-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 40px;
+    margin: 40px auto;
+    max-width: 1000px;
+    flex-wrap: wrap;
+}
+
+.winner-card {
+    background: white;
+    border-radius: 20px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+    flex: 1;
+    max-width: 280px;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.winner-card img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    border: 5px solid #fff;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.winner-card h2 {
+    margin: 8px 0;
+    font-size: 1.3rem;
+    color: #0b509d;
+    font-weight: 700;
+}
+
+.winner-card p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+.winner-card span {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #1a73e8;
+    background: #f0f7ff;
+    padding: 6px 14px;
+    border-radius: 30px;
+}
+
+.winner-card .medal {
+    position: absolute;
+    top: -20px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2.2rem;
+}
+
+.winner-card:hover {
+    transform: translateY(-12px) scale(1.03);
+    box-shadow: 0 14px 35px rgba(0,0,0,0.18);
+}
+
+.winner-card.first {
+    transform: scale(1.15);
+    background: linear-gradient(135deg, #fff7db, #ffe59a);
+    border: 3px solid #f5c400;
+    z-index: 2;
+}
+.winner-card.second {
+    background: linear-gradient(135deg, #f4f4f4, #e0e0e0);
+    border: 2px solid #b0b0b0;
+}
+.winner-card.third {
+    background: linear-gradient(135deg, #ffe8dc, #ffc5a6);
+    border: 2px solid #e67e22;
+}
+
+/* --- Table Styling --- */
+#overall-data-container table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 40px;
+    min-width: 600px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+#overall-data-container th,
+#overall-data-container td {
+    padding: 14px 12px;
+    text-align: center;
+    font-size: 1rem;
+}
+
+#overall-data-container th {
+    background: linear-gradient(90deg, #0b509d, #1a73e8);
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+#overall-data-container tr {
+    background: #fff;
+}
+
+#overall-data-container tr:nth-child(even) {
+    background: #f9fbff;
+}
+
+#overall-data-container tr:hover {
+    background: #f1f8ff;
+    transition: background 0.3s ease;
+}
+
+/* Top 3 Highlight (Pastel Colors) */
+tr.rank-1 {
+    background: linear-gradient(90deg, #fff8e1, #ffecb3) !important;
+    font-weight: bold;
+}
+tr.rank-2 {
+    background: linear-gradient(90deg, #f5f5f5, #e0e0e0) !important;
+    font-weight: bold;
+}
+tr.rank-3 {
+    background: linear-gradient(90deg, #ffe0cc, #ffc299) !important;
+    font-weight: bold;
+}
+
+/* Winner highlight (সবুজ) */
+tr.winner {
+    background: linear-gradient(90deg, #e6f9ec, #c8f7d2) !important;
+    font-weight: bold;
+}
+
+/* Disqualified highlight (লাল) */
+tr.disqualified {
+    background: linear-gradient(90deg, #ffe5e5, #ffcccc) !important;
+    color: #a10000;
+    font-weight: bold;
+}
+
+/* Legend Section */
+.legend {
+    margin-top: 25px;
+    text-align: left;
+    font-size: 0.95rem;
+    color: #444;
+    display: flex;
+    gap: 30px;
+}
+.legend p {
+    margin: 6px 0;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+.legend-box {
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    border-radius: 4px;
+}
+.winner-box {
+    background: linear-gradient(90deg, #e6f9ec, #c8f7d2);
+    border: 1px solid #2e7d32;
+}
+.disqualified-box {
+    background: linear-gradient(90deg, #ffe5e5, #ffcccc);
+    border: 1px solid #b71c1c;
+}
+
+/* Ovarll Ruslt Responsive */
+@media (max-width: 768px) {
+    #overall-data-container {
+        padding: 8px;
+    }
+
+    #overall-data-container table {
+        width: 100%;
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        margin-top: 15px;
+    }
+
+    #overall-data-container th,
+    #overall-data-container td {
+        font-size: 0.7rem; /* আরও ছোট ফন্ট সাইজ */
+        padding: 8px;
+    }
+
+    #overall-data-container th {
+        padding: 8px;
+    }
+
+    #overall-data-container td {
+        padding: 6px;
+    }
+
+    #overall-data-container .rank-1, 
+    #overall-data-container .rank-2, 
+    #overall-data-container .rank-3 {
+        font-size: 0.7rem;
+    }
+
+    #top-3-container{
+        margin-top: 70px;
+        margin-bottom: 70px;
+    }
+}
+
+
+/* Perosnal Result Page*/
+/* ==== User Answer Card ==== */
+.user-answer-card {
+    margin-top: 15px;
+    padding: 10px 20px;
+    border-radius: 10px;
+    font-size: 1rem;
+    line-height: 1.6;
+    position: relative;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+}
+
+/* সঠিক উত্তর */
+.correct-answer-card {
+    background: #e8f9f0;            /* হালকা সবুজ */
+    border-left: 6px solid #28a745; /* গাঢ় সবুজ বর্ডার */
+    color: #155724;
+}
+.correct-answer-card::before {
+    /* content: "✅"; */
+    font-size: 1.4rem;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* ভুল উত্তর */
+.incorrect-answer-card {
+    background: #fff3f3;            /* হালকা লাল */
+    border-left: 6px solid #dc3545; /* গাঢ় লাল বর্ডার */
+    color: #721c24;
+}
+.incorrect-answer-card::before {
+    /* content: "❌"; */
+    font-size: 1.4rem;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+/* সঠিক উত্তর টেক্সটকে হাইলাইট */
+.correct-response-highlight {
+    background: #ffe97a; /* হলুদ হাইলাইট */
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+/* বিশেষ নোট (মাল্টি-আনসার) */
+.special-note {
+    margin-top: 10px;
+    background: #f0f7ff;
+    border-left: 4px solid #1a73e8;
+    padding: 10px 15px;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    color: #333;
+}
+
+/* --- কন্টেইনার এবং হেডিং স্টাইল --- */
+
+.main-card-title {
+    color: #0b509d;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+}
+
+/* --- ব্যক্তিগত তথ্য গ্রিড লেআউট --- */
+.personal-details-grid.half-ring-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* উইডথ আরও ছোট করা হলো */
+    gap: 60px; 
+    row-gap: 30px;
+}
+
+/* --- স্কোর ড্যাশবোর্ড স্টাইল (গ্রিডে আনার জন্য) --- */
+.score-summary-area {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 60px; 
+    padding-top: 20px;
+    margin-top: 10px;
+}
+/* .score-card-ring{
+    width: 100%;
+} */
+/* --- কার্ডের সাইজ ও স্টাইল (সব কার্ডের জন্য একই) --- */
+.card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    background: white;
+    height: 85px; 
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    padding-left: 70px; 
+    z-index: 1;
+    overflow: visible; 
+    /* width: 80%; */
+}
+
+.half-ring-wrapper {
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translate(-50%, -50%); /* রিং সম্পূর্ণ দেখানোর জন্য */
+    z-index: 2;
+}
+
+.half-ring {
+    width: 93px;
+    height: 93px;
+    border-radius: 50%;
+    background: conic-gradient(var(--ring-color) 0deg 180deg, transparent 180deg 360deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-circle {
+    width: 85px;
+    height: 85px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    color: var(--ring-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+    z-index: 1;
+}
+
+.card-content h2 {
+    margin: 0 0 3px;
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.card-content p {
+    margin: 0;
+    color: #343a40;
+    font-size: 1.1rem;
+    font-weight: 700;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}
+
+/* --- স্কোর ভ্যালু হাইলাইট করা --- */
+.score-card-ring .card-content {
+    font-size: 1.5rem; 
+}
+
+
+/* --- অন্যান্য প্রয়োজনীয় কন্টেইনার স্টাইল (পরিবর্তন করা হয়নি) --- */
+.info-card-container {
+    background-color: #f7f9fc;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    margin-bottom: 40px;
+    overflow-x: hidden; 
+    padding-bottom: 40px;
+}
+.main-card-title {
+    color: #0b509d;
+    font-size: 1.6rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+}
+
+.section-title-container {
+    text-align: center;
+    margin: 40px 0 30px 0; 
+}
+
+.section-title {
+    display: inline-block;
+    background-color: #0b509d;
+    color: white;
+    padding: 12px 35px;
+    border-radius: 30px; 
+    font-size: 1.6rem; 
+    font-weight: 700;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    letter-spacing: 0.5px; 
+}
+
+.card-parent-box{
+    /* padding: 0 40px; */
+    box-sizing: border-box;
+    margin-left: 40px;
+}
+
+
+/* --- রেসপনসিভনেস (মোবাইল ডিভাইসের জন্য) --- */
+@media (max-width: 768px) {
+    .personal-details-grid.half-ring-grid, 
+    .score-summary-area {
+        grid-template-columns: 1fr; 
+        gap: 30px;
+    }
+    .info-card-container{
+        padding-bottom: 40px;
+    }
+    .card-parent-box{
+        margin: 0;
+    }
+    .half-ring-card, .score-card-ring{
+        height: 80px; 
+        margin-left: 20px;
+        width: 75%;
+    }
+    /* .card-parent-box{
+        padding: 10px;
+    } */
+    .card-content h2 {
+        font-size: 1rem; 
+    }
+    .card-content p {
+        font-size: 0.9rem; 
+    }
+    .score-card-ring .card-content p {
+        font-size: 1.1rem;
+    }
+
+    /* ring to square */
+    .center-circle{
+        width: 50px;
+        height: 50px;
+        border-radius: 5%;
+    }
+    .half-ring {
+        width: 52px;
+        height: 52px;
+        border-radius: 5%;
+        background: conic-gradient(var(--ring-color) 0deg 180deg, transparent 180deg 360deg);
+    }
+    .section-title{
+        font-size: 0.9rem;
+    }
+    .card{
+        padding-left: 50px;
+        
+    }
+    #overall-data-container p{
+        font-size: 1rem;
+        margin-left: 10px;
+    }
+    .top-3-wrapper {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .winner-card.first { 
+        order: 1; 
+        width: 63%;
+    }
+    .winner-card.second { order: 2; width: 65%;}
+    .winner-card.third { order: 3; width: 60%;}
+}
+
+/* === Leaderboard Section === */
+
+.results-table.leaderboard {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  font-size: 1.05rem;
+  background: #fff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.results-table.leaderboard th {
+  background: #0b509d;
+  color: #fff;
+  padding: 12px;
+  text-align: center;
+}
+
+.results-table.leaderboard td {
+  padding: 10px 15px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+}
+
+.results-table.leaderboard tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+/* ব্যাজ */
+.badge {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-left: 6px;
+}
+
+.badge.gold { background: #ffd70033; color: #d4a017; }
+.badge.silver { background: #c0c0c033; color: #808080; }
+.badge.bronze { background: #cd7f3233; color: #8b4513; }
+
+.badge.disqualified {
+  background: #ffcccc;
+  color: #b30000;
+}
+
+/* বাতিল লাইন হাইলাইট */
+.results-table.leaderboard tr.disqualified {
+  background: #fff0f0;
+  color: #b30000;
+}
+
+/* নাম বাম থেকে শুরু হবে ও বাম প্যাডিং থাকবে */
+
+
+/* winners background */
+.winner-first td { background-color: #cfffe5; }   /* light gold */
+.winner-second td { background-color: #cfffe5; }  /* light silver */
+.winner-third td { background-color: #cfffe5; }   /* light bronze */
+
+/* disqualified rows (manual) */
+.disqualified td { background-color: #ffdede; }
+
+
+.leaderboard-note {
+  margin-top: 15px;
+  padding: 10px 15px;
+  background: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 14px;
+  color: #444;
+  text-align: left;
+}
+.leaderboard-note p {
+  margin: 4px 0;
+}
+
+/* ==== Inforgraphics */
+
+.infographics-wrapper{
+  display:flex;
+  flex-wrap:wrap;
+  gap:20px;
+  margin-top:20px;
+}
+.infographics-left,.infographics-right{
+  flex:1;
+  min-width:280px;
+  background:#fff;
+  border-radius:8px;
+  padding:15px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.1);
+}
+
+.info-right-title{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.compact-wheel{max-width:220px; margin:auto;}
+.metrics-list{margin-top:10px;}
+.metric-card{padding:8px; margin:6px 0; background:#f9f9f9; border-radius:6px; font-size:14px;}
+#tierLegend{margin-top:30px; font-size:14px;}
+@media(max-width:768px){
+  .infographics-wrapper{flex-direction:column;}
+}
+
+
+
+/* রেসপনসিভ */
+@media (max-width: 768px) {
+  .results-table.leaderboard th,
+  .results-table.leaderboard td {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+}
+
+/* === Footer Section === */
+.site-footer {
+  background-color: #1e293b;
+  color: #e2e8f0;
+  padding: 10px 40px 10px;
+  margin-top: 150px;
+  font-family: 'Noto Sans Bengali', sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  /* max-width: 1200px; */
+  margin: auto;
+}
+
+.footer-section {
+  flex: 1 1 220px;
+  padding: 20px;
+  position: relative;
+}
+
+.footer-section:last-child {
+  border-right: none;
+}
+
+.footer-section h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+  color: #ffffff;
+}
+
+.footer-section p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+.social-icons {
+  margin-top: 10px;
+}
+
+.social-icons a {
+  display: inline-block;
+  margin-right: 15px;
+  margin-top: 6px;
+  font-size: 14px;
+  color: #38bdf8;
+  text-decoration: none;
+}
+
+.social-icons a i {
+  margin-right: 6px;
+}
+
+.social-icons a:hover {
+  color: #0ea5e9;
+  text-decoration: underline;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 40px;
+  border-top: 1px solid #334155;
+  padding-top: 15px;
+  font-size: 13px;
+  color: #94a3b8;
+}
+
+/* Desktop view: Right vertical line between sections */
+.footer-section:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 1px;
+  height: 100%;
+  background-color: #334155; /* হালকা ধূসর লাইনের জন্য */
+}
+
+
+/* Mobile view: bottom horizontal line between sections */
+@media (max-width: 768px) {
+  .footer-section:not(:last-child)::after {
+    width: 100%;
+    height: 1px;
+    bottom: 0;
+    top: auto;
+    left: 0;
+    right: auto;
+  }
+}
+
+

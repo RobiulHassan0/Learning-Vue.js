@@ -52,7 +52,7 @@ import { reactive, ref } from 'vue';
             <label><input type="radio" value="no" v-model="question.input" /><span>No</span></label>
         </div>
     </div> -->
-    <pre>{{ qustions }}</pre>
+    <!-- <pre>{{ qustions }}</pre> -->
 </template>
  
  

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ব্যক্তিগত ফলাফল</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap" rel="stylesheet">
+
+
+</head>
+<body>
+    <nav class="main-nav">
+        <ul>
+            <li><a href="index.html">সঠিক উত্তর</a></li>
+            <li><a href="personal_result.html" class="active">ব্যক্তিগত ফলাফল</a></li>
+            <li><a href="overall_result.html">সামগ্রিক ফলাফল</a></li>
+            <li><a href="leaderboard.html">লিডারবোর্ড</a></li>
+        </ul>
+    </nav>
+    
+    <h1>ব্যক্তিগত কুইজ ফলাফল 👤</h1>
+
+    <div class="quiz-container">
+        <h4>নিচের বক্সে আপনার তথ্য দিয়ে ফলাফল বের করুন</strong></h4>
+        <div class="search-row">
+            <input type="text" id="participantId" placeholder="এখানে আপনার নাম লিখুন..." />
+            <button onclick="fetchPersonalResult()">ফলাফল দেখান</button>
+        </div>
+
+        
+        <div id="personal-data-container" class="question-card">
+            <p><strong>তথ্য দেওয়ার সময় খেয়াল করুন—</strong></p>
+            <p>কুইজে অংশগ্রহণের সময় গুগল ফর্মে যে নাম, ইমেইল বা ফোন নাম্বার দিয়েছিলেন সেটিই লিখে সার্চ করতে হবে। অন্য কোনো নাম/ইমেইল/নাম্বার দিলে ফলাফল পাওয়া যাবে না। </p>
+            <p>যেকোনো একটি তথ্য দিতে হবে। নাম বা ইমেইল অথবা ফোন নাম্বার, যে কোনো একটিই দিতে হবে। সব একসঙ্গে দেওয়া যাবে না।</p>
+
+        </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    
+<script src="config.js"></script> 
+<script src="personal_result.js"></script> 
+<script>
+  fetch("footer.html")
+    .then(res => res.text())
+    .then(data => {
+      document.getElementById("footer-placeholder").innerHTML = data;
+    });
+</script>
+
+</body>
+</html>

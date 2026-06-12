@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>কুইজের রেজাল্ট</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <nav class="main-nav">
+      <ul>
+        <li><a href="index.html">সঠিক উত্তর</a></li>
+        <li><a href="personal_result.html">ব্যক্তিগত ফলাফল</a></li>
+        <li><a href="overall_result.html" class="active">সামগ্রিক ফলাফল</a></li>
+        <li><a href="leaderboard.html">লিডারবোর্ড</a></li>
+      </ul>
+    </nav>
+
+    <h1 class="quiz-result-heading">কুইজের চূড়ান্ত ফলাফল 🏆</h1>
+
+    <div class="quiz-container">
+      <div id="top-3-container"></div>
+
+      <div id="overall-data-container">
+        <p>ফলাফল লোড হচ্ছে, অনুগ্রহ করে অপেক্ষা করুন...</p>
+      </div>
+    </div>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="config.js"></script>
+    <script src="overall_result.js"></script>
+    <script>
+      fetch("footer.html")
+        .then((res) => res.text())
+        .then((data) => {
+          document.getElementById("footer-placeholder").innerHTML = data;
+        });
+    </script>
+  </body>
+</html>

@@ -1,38 +1,33 @@
 <script setup>
   import { reactive, ref } from 'vue';
+let title = ref('Method/ Function is vue');
 
   let count = ref(0);
-  count.value = 10;
-
-  const staticString = "Static Text"
 
   let course = reactive({
     name: 'Vue Js',
     student: 'R Hassan',
   });
 
-  course.name = 'Javascript'
+  const increament = amount => count.value += amount; 
+  const dereament = amount => count.value -= amount;
+
+  const changeName = () => course.student = "Robin Khan";
 
 </script>
 
 <template>
-  <h1>{{ staticString }}</h1>
-  <h1>course name:  {{ course.name }}</h1>
-  <h1>Course By: {{ course.student }} </h1>
-<br>
+  <h1>{{ title }}</h1>
 
-  <p>Give Intial value of count</p>
-  <input type="number" v-model="count">
-  <br>
+  <p @click="changeName">Course by: {{ course.student }}</p>
   <br>
 
   <div>
-    <button @click="count++">+</button>
+    <button @click="increament(2)">+</button>
     <h4>{{ count }}</h4>
-    <button @click="count--">-</button>
+    <button @click="dereament(1)">-</button>
   </div>
 
-  <input type="text" v-model="course.name">
 </template>
 
 

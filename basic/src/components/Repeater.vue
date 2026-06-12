@@ -18,11 +18,12 @@ import { reactive } from 'vue';
         <p>{{ students }}</p>
         <div class="container">
             <p>Students</p>
-            <template v-for="(student, index) in studenta" :key="index">
-                <label>Name:</label><input type="text">
-                <label><input type="readio"><span>Male</span></label>
-                <label><input type="readio"><span>Female</span></label>
-            </template>
+            <div v-for="(student, index) in students" :key="index">
+                <label>Name:</label><input type="text" v-model="student.name">
+                
+                <label><input type="radio" value="Male" v-model="student.gender"><span>Male</span></label>
+                  <label><input type="radio" value="Female" v-model="student.gender"><span>Female</span></label>
+            </div>
             <button @click="addNewStudent()">Add New Student</button>
         </div>
     </div>
@@ -38,6 +39,10 @@ import { reactive } from 'vue';
         display: flex;
         flex-direction: column;
         gap: 40px;
+    }
+
+    template{
+        display: block;
     }
 
     p{
