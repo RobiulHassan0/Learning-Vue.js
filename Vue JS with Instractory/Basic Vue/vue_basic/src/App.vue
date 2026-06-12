@@ -1,59 +1,38 @@
-<!-- <script >
+<script setup>
+  import { reactive, ref } from 'vue';
 
-// Options API
-    // export default{
-    //   data(){
-    //     return{
-    //       courseName: 'Vue JS',
-    //       mentor: 'Mahmud',
-    //       count: 0
-    //     }
-    //   }
-    // }
+  let count = ref(0);
+  count.value = 10;
 
-// Compostion API
-  export default{
-    setup(){
-      let count = 0;
-      const courseName = "Vue JS 3 Masterclass";
-      const mentor = "Mahmud Ibrahim";
+  const staticString = "Static Text"
 
-      return {count, courseName, mentor}
-    }
-  }
+  let course = reactive({
+    name: 'Vue Js',
+    student: 'R Hassan',
+  });
 
-</script> -->
-
-<script>
-  // import { ref } from 'vue';
-
-  // let count = ref(0);
-  // const courseName = ref("Vue JS 3 Masterclass");
-  // const mentor = ref("Mahmud Ibrahim");
-
-  import { ref } from 'vue';
-  
-  export default{
-    setup() {
-      let count = ref(0);
-      const courseName = ref("Vue JS 3 Masterclass");
-      const mentor = ref("Mahmud Ibrahim");
-
-      return {count, courseName, mentor}
-    }
-  }
+  course.name = 'Javascript'
 
 </script>
 
-
-
 <template>
-  <h1>course name:  {{ courseName }}</h1>
-  <h1>Course By: {{ mentor }} </h1>
+  <h1>{{ staticString }}</h1>
+  <h1>course name:  {{ course.name }}</h1>
+  <h1>Course By: {{ course.student }} </h1>
+<br>
 
-  <button @click="count++">+</button>
-  <h4>{{ count }}</h4>
-  <button @click="count--">-</button>
+  <p>Give Intial value of count</p>
+  <input type="number" v-model="count">
+  <br>
+  <br>
+
+  <div>
+    <button @click="count++">+</button>
+    <h4>{{ count }}</h4>
+    <button @click="count--">-</button>
+  </div>
+
+  <input type="text" v-model="course.name">
 </template>
 
 
